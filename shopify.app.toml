@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "7afdf5008f0b8f5d5f785a3cd14b54d6"
-application_url = "https://formation-grid-island-culture.trycloudflare.com"
+application_url = "https://suggestion-original-listed-virtual.trycloudflare.com"
 embedded = true
 name = "wishlist-inspire"
 handle = "wishlist-inspire-353"
@@ -27,9 +27,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://formation-grid-island-culture.trycloudflare.com/auth/callback",
-  "https://formation-grid-island-culture.trycloudflare.com/auth/shopify/callback",
-  "https://formation-grid-island-culture.trycloudflare.com/api/auth/callback"
+  "https://suggestion-original-listed-virtual.trycloudflare.com/auth/callback",
+  "https://suggestion-original-listed-virtual.trycloudflare.com/auth/shopify/callback",
+  "https://suggestion-original-listed-virtual.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

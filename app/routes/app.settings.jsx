@@ -13,12 +13,11 @@ import { useState } from "react";
 import { json } from "@remix-run/node";
 import { useLoaderData, Form } from "@remix-run/react";
 
+import db from "../db.server";
+
 export async function loader() {
   // provides data to the component
-  let settings = {
-    name: "My App",
-    description: "My App description"
-  };
+  let settings = await db.settings.findFirst();
 
   return json(settings);
 }
@@ -28,6 +27,22 @@ export async function action({ request }) {
 
   let settings = await request.formData();
   settings = Object.fromEntries(settings);
+
+  await db.settings.upsert({
+    where: {
+      id: "1"
+    },
+    update: {
+      name: settings.name,
+      description: settings.description
+    },
+    create: {
+      id: "1",
+      name: settings.name,
+      description: settings.description
+    }
+  });
+
   return json(settings);
 }
 
@@ -58,8 +73,8 @@ export default function SettingsPage() {
           <Card roundedAbove="sm">
             <Form method="POST">
               <BlockStack gap="400">
-                <TextField name="name" label="App name" value={formState.name} onChange={(value) => setFormState({...formState, name: value}) } />
-                <TextField name="description" label="Description" value={formState.description} onChange={(value) => setFormState({...formState, description: value}) } />
+                <TextField name="name" label="App name" value={formState?.name} onChange={(value) => setFormState({...formState, name: value}) } />
+                <TextField name="description" label="Description" value={formState?.description} onChange={(value) => setFormState({...formState, description: value}) } />
                 <Button submit={true}>Save</Button>
               </BlockStack>
             </Form>
